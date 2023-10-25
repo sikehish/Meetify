@@ -4,6 +4,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Navbar from './components/Navbar'
 import Signup from './pages/auth/Signup'
 import Login from './pages/auth/Login'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
     </Routes>
+    <ToastContainer />
     </BrowserRouter>
   )
 }

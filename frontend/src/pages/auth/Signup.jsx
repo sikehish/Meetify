@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { hobbies, languages } from '../../utils/multiselect-options';
 import 'react-phone-number-input/style.css'
 import PhoneInput,{ isValidPhoneNumber } from 'react-phone-number-input'
-import useSignup from '../hooks/useSignup';
+import useSignup from '../../hooks/useSignup';
 
 const SignUp = () => {
   const [step, setStep] = useState(1);
@@ -135,6 +135,19 @@ const hobbiesDefault = selectedHobbies.map((el) => {
         </div>
         {step === 1 && (
           <>
+          <div className="mb-4">
+              <label htmlFor="usn" className="block mb-2 font-medium">
+                USN:
+              </label>
+              <input
+                type="text"
+                id="usn"
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+                value={usn}
+                onChange={(e) => setUsn(e.target.value)}
+              />
+            </div>
             <div className="mb-4">
               <label htmlFor="email" className="block mb-2 font-medium">
                 Email:
