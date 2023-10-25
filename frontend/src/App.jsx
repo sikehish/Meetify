@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Home from './pages/Home'
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
 import Navbar from './components/Navbar'
 import Signup from './pages/auth/Signup'
 import Login from './pages/auth/Login'
@@ -19,9 +19,9 @@ function App() {
     <Navbar />
     <Routes>
         <Route path="/" element={<Home />} />
-        {!state.user && <Route path="/login" element={<Login />} />}
-        {!state.user && <Route path="/signup" element={<Signup />} />}
-        {state.user && <Route path="/profile" element={<Profile />} />}
+        <Route path="/login" element={!state.user ?  <Login /> : <Navigate to="/" replace={true} />} /> 
+        <Route path="/signup" element={!state.user ?  <Signup /> : <Navigate to="/" replace={true} />} /> 
+        <Route path="/profile" element={state.user ?  <Profile /> : <Navigate to="/" replace={true} />} /> 
     </Routes>
     <ToastContainer />
     </BrowserRouter>
