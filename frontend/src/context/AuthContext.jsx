@@ -20,7 +20,7 @@ const reducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
-    user:null
+    user:JSON.parse(localStorage.getItem('meetify-user')) || null
   });
 
   return (

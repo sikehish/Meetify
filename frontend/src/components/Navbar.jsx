@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import {Link} from "react-router-dom"
+import { useAuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {state, dispatch} = useAuthContext()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -40,18 +42,18 @@ const Navbar = () => {
           </button>
         </div>
         <ul className={`md:flex space-x-4 ${isOpen ? 'block' : 'hidden'}`}>
-          <Link to="/" className='text-white'>
+           <Link to="/" className='text-white'>
               Home
           </Link>
-          <Link to="/login" className='text-white'>
+          {!state.user && <Link to="/login" className='text-white'>
               Login
-          </Link>
-          <Link to="/" className='text-white'>
+          </Link>}
+          {state.user && <Link to="/" className='text-white'>
               Meets
-          </Link>
-          <Link to="/" className='text-white'>
+          </Link>}
+          {state.user && <Link to="/profile" className='text-white'>
               Profile
-          </Link>
+          </Link>}
         </ul>
       </div>
     </nav>

@@ -5,21 +5,25 @@ import Navbar from './components/Navbar'
 import Signup from './pages/auth/Signup'
 import Login from './pages/auth/Login'
 import { ToastContainer } from 'react-toastify'
-import { AuthContextProvider } from './context/AuthContext'
+import {  useAuthContext } from './context/AuthContext'
+import Profile from "./pages/Profile"
 
 function App() {
 
+  const {state, dispatch}= useAuthContext()
+
+  console.log(state)
+
   return (
     <BrowserRouter>
-    <AuthContextProvider>
     <Navbar />
     <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        {!state.user && <Route path="/login" element={<Login />} />}
+        {!state.user && <Route path="/signup" element={<Signup />} />}
+        {state.user && <Route path="/profile" element={<Profile />} />}
     </Routes>
     <ToastContainer />
-    </AuthContextProvider>
     </BrowserRouter>
   )
 }
