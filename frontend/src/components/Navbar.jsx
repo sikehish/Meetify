@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,26 +40,18 @@ const Navbar = () => {
           </button>
         </div>
         <ul className={`md:flex space-x-4 ${isOpen ? 'block' : 'hidden'}`}>
-          <li>
-            <a className="text-white" href="#home">
+          <Link to="/" className='text-white'>
               Home
-            </a>
-          </li>
-          <li>
-            <a className="text-white" href="#login">
+          </Link>
+          <Link to="/login" className='text-white'>
               Login
-            </a>
-          </li>
-          <li>
-            <a className="text-white" href="#meets">
+          </Link>
+          <Link to="/" className='text-white'>
               Meets
-            </a>
-          </li>
-          <li>
-            <a className="text-white" href="#profile">
+          </Link>
+          <Link to="/" className='text-white'>
               Profile
-            </a>
-          </li>
+          </Link>
         </ul>
       </div>
     </nav>

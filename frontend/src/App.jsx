@@ -1,16 +1,20 @@
 import { useState } from 'react'
 import Home from './pages/Home'
-import {BrowserRouter, Router, Route} from "react-router-dom"
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Navbar from './components/Navbar'
+import Signup from './pages/auth/Signup'
+import Login from './pages/auth/Login'
 
 function App() {
 
   return (
     <BrowserRouter>
     <Navbar />
-    <Router>
-        <Route to="/" element={<Home />} />
-    </Router>
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+    </Routes>
     </BrowserRouter>
   )
 }
