@@ -5,11 +5,13 @@ import Navbar from './components/Navbar'
 import Signup from './pages/auth/Signup'
 import Login from './pages/auth/Login'
 import { ToastContainer } from 'react-toastify'
+import { AuthContextProvider } from './context/AuthContext'
 
 function App() {
 
   return (
     <BrowserRouter>
+    <AuthContextProvider>
     <Navbar />
     <Routes>
         <Route path="/" element={<Home />} />
@@ -17,6 +19,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
     </Routes>
     <ToastContainer />
+    </AuthContextProvider>
     </BrowserRouter>
   )
 }

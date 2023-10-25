@@ -75,6 +75,6 @@ const langArr = [
 export const languages = langArr.map((ele) => {
   return { key: ele };
 });
-export const topics = hobbiesArr.map((ele) => {
+export const hobbies = hobbiesArr.map((ele) => {
   return { key: ele };
 });

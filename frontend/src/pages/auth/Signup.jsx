@@ -23,32 +23,37 @@ const SignUp = () => {
   const [details, setDetails] = useState({branch:'', /*course:"engineering",*/ year:"1"}) //Stores occupation,organisation, degree or college
   const { signup, error, isLoading, isSucc } = useSignup();
 
-
+  const langDefault = selectedLanguages.map((el) => {
+    return { key: el };
+  })
+  
 
 const hobbiesDefault = selectedHobbies.map((el) => {
   return { key: el };
 })
 
   const handleNextStep = () => {
-    if (step === 1 && (!usn.trim() || !email.trim() || !name.trim() || !password.trim() || !confirmPassword.trim())) {
-      toast.error('Please fill in all the required fields.');
-      return;
-    }
 
-    if (step === 2 && (!phone.trim() || selectedLanguages.length === 0 || selectedHobbies.length === 0)) {
-      toast.error('Please fill in all the required fields.');
-      return;
-    }
+    // Will be uncommented later
+    // if (step === 1 && (!usn.trim() || !email.trim()  || !password.trim() || !confirmPassword.trim())) {
+    //   toast.error('Please fill in all the required fields.');
+    //   return;
+    // }
 
-    if(step===3 && (!gender.trim() || !(age.toString().trim()) || !(details.branch) || !(details.branch.trim()))){
-      toast.error('Please fill in all the required fields.');
-      return;
-    }
+    // if (step === 2 && (!phone.trim() || selectedLanguages.length === 0 || selectedHobbies.length === 0 || !name.trim())) {
+    //   toast.error('Please fill in all the required fields.');
+    //   return;
+    // }
 
-    if(step===4 && (!desc.trim() || !(details.year))){
-      toast.error('Please fill in all the required fields.');
-      return;
-    }
+    // if(step===3 && (!gender.trim() || !(age.toString().trim()) || !(details.branch) || !(details.branch.trim()))){
+    //   toast.error('Please fill in all the required fields.');
+    //   return;
+    // }
+
+    // if(step===4 && (!desc.trim() || !(details.year))){
+    //   toast.error('Please fill in all the required fields.');
+    //   return;
+    // }
 
     setStep(step + 1);
   };
@@ -162,19 +167,6 @@ const hobbiesDefault = selectedHobbies.map((el) => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="name" className="block mb-2 font-medium">
-                Name:
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="w-full p-2 border border-gray-300 rounded"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="mb-4">
               <label htmlFor="password" className="block mb-2 font-medium">
                 Password:
               </label>
@@ -215,6 +207,19 @@ const hobbiesDefault = selectedHobbies.map((el) => {
 
         {step === 2 && (
           <>
+          <div className="mb-8">
+              <label htmlFor="name" className="block mb-2 font-medium">
+                Name:
+              </label>
+              <input
+                type="text"
+                id="name"
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
             <div className="mb-8">
               <label htmlFor="phone" className="block mb-2 font-medium">
                 Phone Number:
@@ -257,7 +262,7 @@ const hobbiesDefault = selectedHobbies.map((el) => {
             </div>
             <div className="mb-8">
               <label htmlFor="hobbies" className="block mb-2 font-medium ">
-                Preferred Topics:
+                Preferred Hobbies:
               </label>
               <Multiselect
               id="hobbies"
@@ -273,7 +278,7 @@ const hobbiesDefault = selectedHobbies.map((el) => {
             return ele.key
           }))}
           options={hobbies}
-          placeholder={'Select Topics'}
+          placeholder={'Select Hobbies'}
           showCheckbox
         />
             </div>
@@ -323,18 +328,6 @@ const hobbiesDefault = selectedHobbies.map((el) => {
                 onChange={(e) => setAge(e.target.value)}
               />
             </div>
-            <div className="mb-8">
-              <label htmlFor="hobbies" className="block mb-2 font-medium ">
-                Working Status:
-              </label>
-              <select
-        id="status"
-        className="px-2 py-1 border rounded w-full" value={details.status} onChange={(e)=>setDetails(prev => {return {...prev, status:e.target.value}})} defaultValue={"student"}
-      >
-        <option value="working">Working</option>
-        <option value="student">Student</option>
-      </select>
-            </div>
             <div className="flex justify-end">
                <button
                 type="button"
@@ -352,11 +345,11 @@ const hobbiesDefault = selectedHobbies.map((el) => {
 
         {step===4 && (<>
           <div className="mb-8">
-              <label htmlFor="industry" className="block mb-2 font-medium ">
+              <label htmlFor="branch" className="block mb-2 font-medium ">
                 Year:
               </label>
               <select
-        id="status"
+        id="branch"
         className="px-2 py-1 border rounded w-full" value={details.industry} onChange={(e)=>setDetails(prev => {return {...prev, year:e.target.value}})} defaultValue={"1"}
       >
         <option value="1">1st year</option>
@@ -370,7 +363,7 @@ const hobbiesDefault = selectedHobbies.map((el) => {
                 Branch:
               </label>
               <input type="text" 
-        id="status"
+        id="branch"
         className="px-2 py-1 border rounded w-full" value={details.organization} onChange={(e)=>setDetails(prev => {return {...prev, branch:e.target.value}})}
       />
             </div>
