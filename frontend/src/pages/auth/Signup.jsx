@@ -2,7 +2,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { hobbies, languages } from '../utils/multiselect-options';
+import { hobbies, languages } from '../../utils/multiselect-options';
 import 'react-phone-number-input/style.css'
 import PhoneInput,{ isValidPhoneNumber } from 'react-phone-number-input'
 import useSignup from '../hooks/useSignup';
