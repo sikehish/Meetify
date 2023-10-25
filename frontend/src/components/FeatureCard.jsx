@@ -1,35 +1,19 @@
 import React from 'react';
 
-const FeatureCard = ({ feature, isActive, onPrev, onNext, isFirst, isLast }) => {
+const FeatureCard = ({ feature, isActive, isFirst, isLast, onNext, onPrev }) => {
+  const cardClasses = `w-80 mx-auto ${
+    isActive ? 'opacity-100' : 'opacity-0'
+  } absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition duration-500 ease-in-out mx-28`;
+
   return (
-    <div
-      className={`h-screen w-full text-white text-center flex flex-col items-center justify-center transition-opacity transform ${
-        isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'
-      }`}
-    >
-      <div className="text-5xl mb-4">{feature.icon}</div>
-      <h3 className="text-2xl font-semibold mb-2">{feature.title}</h3>
-      <p className="text-gray-400 mb-4">{feature.description}</p>
-      <div className="mb-6 flex justify-center space-x-6">
-        {!isFirst && (
-          <div
-            onClick={onPrev}
-            className="cursor-pointer text-indigo-500 text-4xl"
-          >
-            ▲
-          </div>
-        )}
-        {!isLast && (
-          <div
-            onClick={onNext}
-            className="cursor-pointer text-indigo-500 text-4xl"
-          >
-            ▼
-          </div>
-        )}
+    <div className={cardClasses}>
+      <div className="bg-white bg-opacity-20 p-8 rounded-xl text-center">
+        <div className="text-5xl mb-4">{feature.icon}</div>
+        <h3 className="text-2xl font-semibold mb-2">{feature.title}</h3>
+        <p className="text-gray-400">{feature.description}</p>
       </div>
     </div>
-  )
+  );
 };
 
 export default FeatureCard;

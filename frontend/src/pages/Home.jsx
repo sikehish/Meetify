@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
-import FeatureCard from '../components/FeatureCard';
 
 const Home = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -35,6 +33,10 @@ const Home = () => {
     setActiveFeature((activeFeature - 1 + features.length) % features.length);
   };
 
+  const goToFeature = (index) => {
+    setActiveFeature(index);
+  };
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -43,25 +45,106 @@ const Home = () => {
 
   return (
     <div className="bg-gradient-to-r from-blue-400 to-indigo-600 text-white">
-      <Navbar />
+      <nav className="bg-indigo-800 p-4">
+        <div className="flex items-center justify-between">
+          <div className="text-3xl font-extrabold text-white">Meetify</div>
+          <div className="md:hidden">
+            <button onClick={toggleMenu} className="text-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
+          <ul className={`md:flex space-x-4 ${isOpen ? 'block' : 'hidden'}`}>
+            <li>
+              <a className="text-white" href="#home">
+                Home
+              </a>
+            </li>
+            <li>
+              <a className="text-white" href="#login">
+                Login
+              </a>
+            </li>
+            <li>
+              <a className="text-white" href="#meets">
+                Meets
+              </a>
+            </li>
+            <li>
+              <a className="text-white" href="#profile">
+                Profile
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-      <header className="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-blue-500 to-indigo-700 animate-fade-in">
+      <header className="py-16 text-center bg-gradient-to-r from-blue-500 to-indigo-700 animate-fade-in">
         <h1 className="text-5xl font-extrabold mb-6">Welcome to Meetify</h1>
         <p className="text-2xl">Connect, Collaborate, Create Memories</p>
       </header>
 
-      <section className="h-screen relative overflow-hidden">
-        {features.map((feature, index) => (
-          <FeatureCard
-            key={index}
-            feature={feature}
-            isActive={index === activeFeature}
-            isFirst={index === 0}
-            isLast={index === features.length - 1}
-            onNext={nextFeature}
-            onPrev={prevFeature}
-          />
-        ))}
+      <section className="text-center mb-12 p-6">
+        <h2 className="text-3xl font-semibold mb-4">Features</h2>
+        <div className="relative">
+          {activeFeature > 0 && (
+            <button
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 text-3xl text-white hover:text-indigo-300 transition transform hover:scale-110 focus:outline-none"
+              onClick={prevFeature}
+            >
+              &#9664;
+            </button>
+          )}
+          <div className="p-8 mx-4 bg-white bg-opacity-20 rounded-xl">
+            <div className="text-5xl mb-4">{features[activeFeature].icon}</div>
+            <h3 className="text-2xl font-semibold mb-2">{features[activeFeature].title}</h3>
+            <p className="text-gray-400">{features[activeFeature].description}</p>
+          </div>
+          {activeFeature < features.length - 1 && (
+            <button
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 text-3xl text-white hover:text-indigo-300 transition transform hover:scale-110 focus:outline-none"
+              onClick={nextFeature}
+            >
+              &#9654;
+            </button>
+          )}
+        </div>
+        <div className="mt-4 flex justify-center">
+          {features.map((_, index) => (
+            <button
+              key={index}
+              className={`text-xl mx-2 focus:outline-none ${
+                index === activeFeature
+                  ? 'text-indigo-500'
+                  : 'text-white hover:text-indigo-300'
+              }`}
+              onClick={() => goToFeature(index)}
+            >
+              &bull;
+            </button>
+          ))}
+        </div>
       </section>
 
       <section className="text-center py-16 bg-gradient-to-r from-blue-500 to-indigo-700">
@@ -71,6 +154,10 @@ const Home = () => {
         </p>
         <button className="bg-indigo-600 text-white py-3 px-6 text-lg rounded-full hover:bg-indigo-800 transition">Sign Up Now</button>
       </section>
+
+      <footer className="bg-indigo-800 p-8 text-center">
+        <p className="text-white">© 2023 Meetify. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
