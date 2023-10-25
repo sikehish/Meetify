@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; 
 
 const Login = () => {
   const [usn, setUsn] = useState('');
@@ -15,7 +16,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-4">Login to Your Account</h2>
+        <h2 className="text-2xl font-bold mb-4">Login</h2>
         <div className="mb-4">
           <label htmlFor="usn" className="block text-gray-600 font-medium">
             USN or Email
@@ -46,6 +47,12 @@ const Login = () => {
         >
           Login
         </button>
+        <div className="text-center mt-4">
+          Don't have an account?{' '}
+          <Link to="/signup" className="text-indigo-600 font-semibold">
+            Signup here
+          </Link>
+        </div>
       </div>
     </div>
   );
