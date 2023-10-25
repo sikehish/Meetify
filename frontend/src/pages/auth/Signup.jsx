@@ -40,12 +40,12 @@ const hobbiesDefault = selectedHobbies.map((el) => {
     //   return;
     // }
 
-    // if (step === 2 && (!phone.trim() || selectedLanguages.length === 0 || selectedHobbies.length === 0 || !name.trim())) {
+    // if (step === 2 && (!phone.trim() || selectedLanguages.length === 0  || !name.trim())) {
     //   toast.error('Please fill in all the required fields.');
     //   return;
     // }
 
-    // if(step===3 && (!gender.trim() || !(age.toString().trim()) || !(details.branch) || !(details.branch.trim()))){
+    // if(step===3 && (!gender.trim() || !(age.toString().trim()) || !(details.branch) || !(details.branch.trim()) ||selectedHobbies.length === 0 )){
     //   toast.error('Please fill in all the required fields.');
     //   return;
     // }
@@ -260,7 +260,24 @@ const hobbiesDefault = selectedHobbies.map((el) => {
         />
 
             </div>
-            <div className="mb-8">
+            <div className="flex justify-end">
+               <button
+                type="button"
+                className="px-4 py-2 bg-blue-200 text-gray-800 rounded mr-2"
+                onClick={handlePreviousStep} 
+              >
+                Previous
+              </button>
+               <button type="button" className="px-4 py-2 bg-green-500 text-white rounded" onClick={handleNextStep} >
+                Next
+              </button>
+            </div>
+          </>
+        )}
+
+{step === 3 && (
+          <>
+           <div className="mb-8">
               <label htmlFor="hobbies" className="block mb-2 font-medium ">
                 Preferred Hobbies:
               </label>
@@ -282,23 +299,6 @@ const hobbiesDefault = selectedHobbies.map((el) => {
           showCheckbox
         />
             </div>
-            <div className="flex justify-end">
-               <button
-                type="button"
-                className="px-4 py-2 bg-blue-200 text-gray-800 rounded mr-2"
-                onClick={handlePreviousStep} 
-              >
-                Previous
-              </button>
-               <button type="button" className="px-4 py-2 bg-green-500 text-white rounded" onClick={handleNextStep} >
-                Next
-              </button>
-            </div>
-          </>
-        )}
-
-{step === 3 && (
-          <>
             <div className="mb-8">
               <label htmlFor="gender" className="block mb-2 font-medium">
                 Gender
